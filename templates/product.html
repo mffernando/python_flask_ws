@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Produto {{product.name}}</title>
+{% endblock %}
+
+{% block body %}
+
+<h2>Product</h2>
+
+<form action="/purchases/product/{{product.id}}" method="GET">
+    Name: <input type="text" name="name" id="name" value="{{product.name}}">
+    </br>
+    Amount: <input type="number" name="amount" id="amount" value="{{product.amount}}">
+    </br>
+    Brand: <input type="text" name="brand" id="brand" value="{{product.brand}}">
+    </br>
+    Validity: <input type="date" name="validity" id="validity" value="{{product.validity}}">
+    </br>
+    <input type="submit" value="Voltar">
+</form>
+
+{% endblock %}

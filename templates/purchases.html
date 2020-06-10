@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Lista de Produtos</title>
+{% endblock %}
+
+{% block body %}
+
+<h2>Novo Produto</h2>
+<form action="/purchases" method="POST">
+    Nome: <input type="text" name="name" id="name">
+    </br>
+    Quantidade: <input type="number" name="amount" id="amount">
+    </br>
+    Marca: <input type="text" name="brand" id="brand">
+    </br>
+    Validade: <input type="date" name="validity" id="validity">
+    </br>
+    <input type="submit" value="Adicionar">
+</form>
+
+<hr>
+<table style="width: 100%;">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Marca</th>
+        <th>Validade</th>
+        <th>Data de Criação</th>
+        <th>Ações</th>
+    </tr>
+    {% for product in products %}
+        <tr>
+            <th>{{ product.id }}</th>
+            <th>{{ product.name }}</th>
+            <th>{{ product.amount }}</th>
+            <th>{{ product.brand }}</th>
+            <th>
+                {% if product.validity %}
+                    {{ product.validity }}
+                {% else %}
+                    Indeterminada
+                {% endif %}
+            </th>
+            <th>{{ product.creation_date }}</th>
+            <th>
+                <a href="/purchases/product/{{product.id}}">Detalhar</a>
+                <a href="/purchases/edit/{{product.id}}">Editar</a>
+                <a href="/purchases/delete/{{product.id}}">Deletar</a>
+            </th>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
